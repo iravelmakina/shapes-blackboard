@@ -5,7 +5,7 @@ class Figure {
 public:
     virtual ~Figure() = default;
 
-    Figure(const double y, const double x) : x(x), y(y) {}
+    Figure(size_t id, double x, double y);
 
     void setId(size_t input);
 
@@ -22,7 +22,7 @@ public:
     virtual void draw();
 
 private:
-    size_t id;
+    size_t id = 0;
     double x;
     double y;
 };
