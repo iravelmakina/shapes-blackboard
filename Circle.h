@@ -4,7 +4,7 @@
 
 class Circle : Figure {
 public:
-    Circle(const double x, const double y, const double radius) : Figure(x, y), radius(radius) {}
+    Circle(size_t id, double x, double y, double radius);
 
     void draw() override;
 
