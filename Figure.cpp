@@ -1,4 +1,27 @@
 #include "Figure.h"
 
 
-size_t Figure::id = generateId();
+void Figure::setId(size_t input) {
+    id = input;
+}
+
+
+size_t Figure::getId() const {
+    return id;
+}
+
+void Figure::setX(const double input) {
+    x = input;
+}
+
+double Figure::getX() const {
+    return x;
+}
+
+void Figure::setY(const double input) {
+    y = input;
+}
+
+double Figure::getY() const {
+    return y;
+}
