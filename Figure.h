@@ -7,15 +7,15 @@ public:
 
     Figure(size_t id, double x, double y);
 
-    void setId(size_t input);
+    void setId(size_t value);
 
     size_t getId() const;
 
-    void setX(double input);
+    void setX(double value);
 
     double getX() const;
 
-    void setY(double input);
+    void setY(double value);
 
     double getY() const;
 

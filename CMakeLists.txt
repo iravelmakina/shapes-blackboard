@@ -5,4 +5,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(shapes_blackboard main.cpp
         Figure.h
-        Figure.cpp)
+        Figure.cpp
+        Circle.h
+        Circle.cpp
+        Line.h
+        Line.cpp
+        Rectangle.h
+        Rectangle.cpp
+        Triangle.h
+        Triangle.cpp)

@@ -14,8 +14,8 @@ size_t Figure::getId() const {
 }
 
 
-void Figure::setX(const double input) {
-    x = input;
+void Figure::setX(const double value) {
+    x = value;
 }
 
 
@@ -24,8 +24,8 @@ double Figure::getX() const {
 }
 
 
-void Figure::setY(const double input) {
-    y = input;
+void Figure::setY(const double value) {
+    y = value;
 }
 
 

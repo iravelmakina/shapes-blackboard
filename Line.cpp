@@ -5,8 +5,8 @@ Line::Line(const size_t id, const double x, const double y, const double x2, con
 }
 
 
-void Line::setX2(const double input) {
-    x2 = input;
+void Line::setX2(const double value) {
+    x2 = value;
 }
 
 
@@ -15,11 +15,16 @@ double Line::getX2() const {
 }
 
 
-void Line::setY2(const double input) {
-    y2 = input;
+void Line::setY2(const double value) {
+    y2 = value;
 }
 
 
 double Line::getY2() const {
     return y2;
 };
+
+
+void Line::draw() {
+
+}
