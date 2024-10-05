@@ -1,17 +1,27 @@
 #pragma once
+#include <ostream>
+
 #include "Figure.h"
 
 
-class Circle : Figure {
+class Circle : public Figure {
 public:
-    Circle(size_t id, double x, double y, double radius);
+    Circle(size_t id, int x, int y, int radius);
 
-    void setRadius(double value);
+    FigureType getType() const override;
 
-    double getRadius() const;
+    std::string getCoordinates() const override;
 
-    void draw() override;
+    void setRadius(int value);
+
+    int getRadius() const;
+
+    void draw(std::vector<std::vector<char>> &grid) override;
+
+    bool operator==(const Figure &other) const override;
+
+    void print(std::ostream &os) const override;
 
 private:
-    double radius;
+    int radius;
 };
