@@ -38,7 +38,7 @@ void Circle::draw(std::vector<std::vector<char>> &grid) {
 
 bool Circle::operator==(const Figure &other) const {
     if (const Circle* otherCircle = dynamic_cast<const Circle*>(&other)) {
-        return getCoordinates() == otherCircle->getCoordinates();
+        return getCoordinates() == otherCircle->getCoordinates()  && getRadius() == otherCircle->getRadius();
     }
     return false;
 }
