@@ -1,28 +1,47 @@
 #pragma once
 
 
+#include <cstddef>
+#include <ostream>
+
+
 class Figure {
 public:
-    virtual ~Figure() = default;
+    enum FigureType {
+        Line,
+        Circle,
+        Rectangle,
+        Triangle
+    };
 
-    Figure(size_t id, double x, double y);
+    Figure(size_t id, int x, int y);
+
+    virtual ~Figure() = default;
 
     void setId(size_t value);
 
+    virtual FigureType getType() const = 0;
+
+    virtual std::string getCoordinates() const = 0;
+
     size_t getId() const;
 
-    void setX(double value);
+    void setX(int value);
 
-    double getX() const;
+    int getX() const;
 
-    void setY(double value);
+    void setY(int value);
 
-    double getY() const;
+    int getY() const;
 
-    virtual void draw();
+    virtual void draw(std::vector<std::vector<char>> &grid) = 0;
 
+    virtual void print(std::ostream& os) const = 0;
+
+    friend std::ostream &operator<<(std::ostream &os, const Figure &figure);
+
+    virtual bool operator==(const Figure &other) const = 0;
 private:
     size_t id = 0;
-    double x;
-    double y;
+    int x, y;
 };
