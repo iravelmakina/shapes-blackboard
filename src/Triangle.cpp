@@ -1,7 +1,6 @@
 #include "Triangle.h"
 
 
-#include <iostream>
 #include <sstream>
 
 

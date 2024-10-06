@@ -3,21 +3,15 @@ project(shapes_blackboard)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(shapes_blackboard main.cpp
-        Figure.h
-        Figure.cpp
-        Circle.h
-        Circle.cpp
-        Line.h
-        Line.cpp
-        Rectangle.h
-        Rectangle.cpp
-        Triangle.h
-        Triangle.cpp
-        Blackboard.h
-        Blackboard.cpp
-        BresenhamAlgorithm.cpp
-        BresenhamAlgorithm.h
-        CLI.h
-        CLI.cpp
+include_directories(include)
+
+add_executable(shapes_blackboard src/main.cpp
+        src/Figure.cpp
+        src/Line.cpp
+        src/Circle.cpp
+        src/Rectangle.cpp
+        src/Triangle.cpp
+        src/Blackboard.cpp
+        src/BresenhamAlgorithm.cpp
+        src/CLI.cpp
 )
