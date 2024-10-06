@@ -31,6 +31,10 @@ public:
 
     void clear();
 
+    void save(const std::string &filePath) const;
+
+    void load(const std::string &filePath);
+
 private:
     size_t width;
     size_t height;

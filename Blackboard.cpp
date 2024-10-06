@@ -110,6 +110,55 @@ void Blackboard::clear() {
 }
 
 
+void Blackboard::save(const std::string &filePath) const {
+    std::ofstream outFile(filePath);
+    if (!outFile) {
+        std::cout << "Error: Could not open file for writing: " << filePath << std::endl;
+        return;
+    }
+
+    outFile << width << " " << height << "\n";
+    for (const std::unique_ptr<Figure> &figure: currentFigures) {
+        outFile << figure->getType() << " " << figure->getCoordinates() << "\n";
+    }
+    outFile.close();
+    std::cout << "Saved!" << std::endl;
+}
+
+
+void Blackboard::load(const std::string &filePath) { // file validation
+    std::ifstream inFile(filePath);
+    if (!inFile) {
+        std::cout << "Error: Could not open file for reading: " << filePath << std::endl;
+        return;
+    }
+
+    if (!(inFile >> width >> height) || width <= 0 || height <= 0) {
+        std::cout << "Error: Invalid blackboard dimensions in file: " << filePath << std::endl;
+        return;
+    }
+
+    grid.resize(height, std::vector(width, '.'));
+    currentFigures.clear();
+
+    inFile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    std::string line;
+    while (std::getline(inFile, line)) {
+        std::istringstream iss(line);
+        int typeId;
+        if (!(iss >> typeId)) {
+            std::cout << "Error: Invalid figure type ID in file: " << filePath << std::endl;
+            return;
+        }
+        parseAndAddFigure(iss, typeId);
+
+    }
+    inFile.close();
+    std::cout << "Loaded!" << std::endl;
+}
+
+
 // ----------------------------------------------------------------------------
 void Blackboard::print() const {
     for (const std::vector<char> &row: grid) {
@@ -169,4 +218,43 @@ bool Blackboard::isDuplicateFigure(const std::unique_ptr<Figure> &newFigure) con
         }
     }
     return false;
+}
+
+
+void Blackboard::parseAndAddFigure(std::istringstream &iss, const int typeId) {
+    int x, y, param1, param2 = 0, param3 = 0, param4 = 0;
+    iss >> x >> y;
+
+    switch (typeId) {
+        case 0:
+            if (!(iss >> param1 >> param2)) {
+                std::cout << "Error: Invalid parameters for Line." << std::endl;
+                return;
+            }
+        add(typeId, x, y, param1, param2);
+        break;
+        case 1:
+            if (!(iss >> param1)) {
+                std::cout << "Error: Invalid parameters for Circle." << std::endl;
+                return;
+            }
+        add(typeId, x, y, param1);
+        break;
+        case 2:
+            if (!(iss >> param1 >> param2)) {
+                std::cout << "Error: Invalid parameters for Rectangle." << std::endl;
+                return;
+            }
+        add(typeId, x, y, param1, param2);
+        break;
+        case 3:
+            if (!(iss >> param1 >> param2 >> param3 >> param4)) {
+                std::cout << "Error: Invalid parameters for Triangle." << std::endl;
+                return;
+            }
+        add(typeId, x, y, param1, param2, param3, param4);
+        break;
+        default:
+            std::cout << "Error: Unknown figure type: " << typeId << std::endl;
+    }
 }
