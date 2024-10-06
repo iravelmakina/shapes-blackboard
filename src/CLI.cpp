@@ -59,7 +59,7 @@ void CLI::showMenu() {
             << "undo: Remove the last added shape from the blackboard\n"
             << "clear: Remove all shapes from blackboard\n"
             << "save: Save the blackboard to the file\n"
-            << "load: Load a blackboard from the file.\n"
+            << "load: Load a blackboard from the file\n"
             << "menu: Show menu\n"
             << "exit: Exit\n";
 }
@@ -87,16 +87,26 @@ std::pair<int, int> CLI::getBlackboardSize() {
 
 std::string CLI::getString() {
     std::string input;
-    std::getline(std::cin, input);
-    std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+    do {
+        std::getline(std::cin, input);
+        std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+        if (input.empty()) {
+            std::cout << "Error: Input cannot be empty. Please, try again." << std::endl;
+        }
+    } while (input.empty());
     return input;
 }
 
 
 std::string CLI::getFilePath() {
     std::string filePath;
-    std::cout << "File path: ";
-    std::getline(std::cin, filePath);
+    do {
+        std::cout << "File path: ";
+        std::getline(std::cin, filePath);
+        if (filePath.empty()) {
+            std::cout << "Error: File path cannot be empty. Please, try again." << std::endl;
+        }
+    } while (filePath.empty());
     return filePath;
 }
 
@@ -113,9 +123,7 @@ void CLI::handleAddCommand() {
         }
     } while (figureName != "line" && figureName != "circle" && figureName != "rectangle" && figureName != "triangle");
 
-    if (!getCoordinates(x, y)) {
-        return;
-    }
+    getCoordinates(x, y);
 
     if (figureName == "line") {
         do {
@@ -161,19 +169,19 @@ bool CLI::isValidMeasurement(const std::string &parameterStr) {
 
 
 bool CLI::getCoordinates(int &x, int &y) {
-    std::cout << "x1: ";
-    const std::string xStr = getString();
-    std::cout << "y1: ";
-    const std::string yStr = getString();
+    while (true) {
+        std::cout << "x1: ";
+        const std::string xStr = getString();
+        std::cout << "y1: ";
+        const std::string yStr = getString();
 
-    if (!isValidMeasurement(xStr) || !isValidMeasurement(yStr)) {
+        if (isValidMeasurement(xStr) && isValidMeasurement(yStr)) {
+            x = std::stoi(xStr);
+            y = std::stoi(yStr);
+            return true;
+        }
         std::cout << "Invalid coordinates. Please, try again." << std::endl;
-        return false;
     }
-
-    x = std::stoi(xStr);
-    y = std::stoi(yStr);
-    return true;
 }
 
 
@@ -199,7 +207,7 @@ bool CLI::getParameters(int &param1) {
     std::string param1Str = getString();
 
     if (!isValidMeasurement(param1Str)) {
-        std::cout << "Invalid parameters. Please, try again." << std::endl;
+        std::cout << "Invalid parameter. Please, try again." << std::endl;
         return false;
     }
 

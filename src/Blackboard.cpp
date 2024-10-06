@@ -198,13 +198,13 @@ std::unique_ptr<Figure> Blackboard::createFigure(const int typeId, const int x, 
 bool Blackboard::canPlaceFigure(const int x, const int y, const int param1, const int param2, const int param3, const int param4, const int typeId) const {
     switch (typeId) {
         case 0:
-            return x >= 0 && x < width && y >= 0 && y < height && param1 >= 0 && param1 < width && param2 >= 0 && param2 < height;
+            return (x >= 0 && x < width && y >= 0 && y < height) || (param1 >= 0 && param1 < width && param2 >= 0 && param2 < height);
         case 1:
-            return x >= 0 && x < width && y >= 0 && y < height && param1 > 0 && x + param1 < width && y + param1 < height;
+            return x - param1 < width || x + param1 >= 0 || y - param1 < height || y + param1 >= 0;
         case 2:
-            return x >= 0 && x < width && y >= 0 && y < height && param1 >= 0 && param1 < width && param2 >= 0 && param2 < height;
+            return (x >= 0 && x < width && y >= 0 && y < height) || (param1 >= 0 && param1 < width && param2 >= 0 && param2 < height);
         case 3:
-            return x >= 0 && x < width && y >= 0 && y < height && param1 >= 0 && param1 < width && param2 >= 0 && param2 < height && param3 >= 0 && param3 < width && param4 >= 0 && param4 < height;
+            return (x >= 0 && x < width && y >= 0 && y < height) || (param1 >= 0 && param1 < width && param2 >= 0 && param2 < height) || (param3 >= 0 && param3 < width && param4 >= 0 && param4 < height);
         default:
             return false;
     }
