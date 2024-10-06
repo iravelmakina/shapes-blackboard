@@ -25,6 +25,8 @@ public:
 
     static void shapes();
 
+    void add(int typeId, int x, int y, int param1, int param2 = 0, int param3 = 0, int param4 = 0);
+
 private:
     size_t width;
     size_t height;

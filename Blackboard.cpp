@@ -71,6 +71,26 @@ void Blackboard::shapes() {
     std::cout << "Triangle: (x, y) for first vertex, (x, y) for second vertex, (x, y) for third vertex;" << std::endl;
 }
 
+
+void Blackboard::add(const int typeId, const int x, const int y, const int param1, const int param2, const
+                     int param3, const int param4) {
+    if (canPlaceFigure(x, y, param1, param2, param3, param4, typeId)) {
+        if (std::unique_ptr<Figure> figure = createFigure(typeId, x, y, param1, param2, param3, param4)) {
+            if (!isDuplicateFigure(figure)) {
+                figure->setId(generateFigureId());
+                currentFigures.push_back(std::move(figure));
+            } else {
+                std::cout << "Error: Duplicate figure cannot be placed on the board." << std::endl;
+            }
+        } else {
+            std::cout << "Error: Figure creation failed." << std::endl;
+        }
+    } else {
+        std::cout << "Error: Figure cannot be placed on the board." << std::endl;
+    }
+}
+
+
 // ----------------------------------------------------------------------------
 void Blackboard::print() const {
     for (const std::vector<char> &row: grid) {
@@ -131,4 +151,3 @@ bool Blackboard::isDuplicateFigure(const std::unique_ptr<Figure> &newFigure) con
     }
     return false;
 }
-
