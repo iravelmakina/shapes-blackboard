@@ -94,5 +94,5 @@ load
 
 
 ### Program structure
-<img width="1512" alt="Screenshot 2024-10-06 at 14 05 33" src="https://github.com/user-attachments/assets/6c63accd-0d0f-4ed9-a42d-31c5708b188b">
+<img width="1427" alt="Screenshot 2024-10-06 at 18 08 14" src="https://github.com/user-attachments/assets/32413e07-7b3b-494f-be28-6325a2be7a42">
 
