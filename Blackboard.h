@@ -19,10 +19,20 @@ public:
 
     static size_t generateFigureId();
 
+    void draw();
+
+    void list() const;
+
+    static void shapes();
+
 private:
     size_t width;
     size_t height;
     std::vector<std::vector<char> > grid;
     std::vector<std::unique_ptr<Figure> > currentFigures;
     static size_t nextFigureId;
+
+    void print() const;
+
+    void resetGrid();
 };
