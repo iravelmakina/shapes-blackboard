@@ -31,12 +31,12 @@ namespace BresenhamAlgorithm {
     }
 
 
-    void drawCircle(std::vector<std::vector<char> > &grid, const int x_center, const int y_center, const int radius) {
+    void drawCircle(std::vector<std::vector<char> > &grid, const int xCenter, const int yCenter, const int radius) {
         int x = 0;
         int y = radius;
         int d = 3 - 2 * radius;
 
-        plotCirclePoints(grid, x_center, y_center, x, y);
+        plotCirclePoints(grid, xCenter, yCenter, x, y);
 
         while (x <= y) {
             x++;
@@ -46,20 +46,20 @@ namespace BresenhamAlgorithm {
             } else {
                 d = d + 4 * x + 6;
             }
-            plotCirclePoints(grid, x_center, y_center, x, y);
+            plotCirclePoints(grid, xCenter, yCenter, x, y);
         }
     }
 
 
-    void plotCirclePoints(std::vector<std::vector<char> > &grid, const int x_center, const int y_center, const int x,
+    void plotCirclePoints(std::vector<std::vector<char> > &grid, const int xCenter, const int yCenter, const int x,
                           const int y) {
-        if (x_center + x < grid[0].size() && y_center + y < grid.size()) grid[y_center + y][x_center + x] = '#';
-        if (x_center - x >= 0 && y_center + y < grid.size()) grid[y_center + y][x_center - x] = '#';
-        if (x_center + x < grid[0].size() && y_center - y >= 0) grid[y_center - y][x_center + x] = '#';
-        if (x_center - x >= 0 && y_center - y >= 0) grid[y_center - y][x_center - x] = '#';
-        if (x_center + y < grid[0].size() && y_center + x < grid.size()) grid[y_center + x][x_center + y] = '#';
-        if (x_center - y >= 0 && y_center + x < grid.size()) grid[y_center + x][x_center - y] = '#';
-        if (x_center + y < grid[0].size() && y_center - x >= 0) grid[y_center - x][x_center + y] = '#';
-        if (x_center - y >= 0 && y_center - x >= 0) grid[y_center - x][x_center - y] = '#';
+        if (xCenter + x < grid[0].size() && yCenter + y < grid.size()) grid[yCenter + y][xCenter + x] = '#';
+        if (xCenter - x >= 0 && yCenter + y < grid.size()) grid[yCenter + y][xCenter - x] = '#';
+        if (xCenter + x < grid[0].size() && yCenter - y >= 0) grid[yCenter - y][xCenter + x] = '#';
+        if (xCenter - x >= 0 && yCenter - y >= 0) grid[yCenter - y][xCenter - x] = '#';
+        if (xCenter + y < grid[0].size() && yCenter + x < grid.size()) grid[yCenter + x][xCenter + y] = '#';
+        if (xCenter - y >= 0 && yCenter + x < grid.size()) grid[yCenter + x][xCenter - y] = '#';
+        if (xCenter + y < grid[0].size() && yCenter - x >= 0) grid[yCenter - x][xCenter + y] = '#';
+        if (xCenter - y >= 0 && yCenter - x >= 0) grid[yCenter - x][xCenter - y] = '#';
     }
 }

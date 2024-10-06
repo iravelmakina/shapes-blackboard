@@ -13,4 +13,11 @@ add_executable(shapes_blackboard main.cpp
         Rectangle.h
         Rectangle.cpp
         Triangle.h
-        Triangle.cpp)
+        Triangle.cpp
+        Blackboard.h
+        Blackboard.cpp
+        BresenhamAlgorithm.cpp
+        BresenhamAlgorithm.h
+        CLI.h
+        CLI.cpp
+)
