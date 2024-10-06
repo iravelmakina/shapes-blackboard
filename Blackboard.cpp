@@ -91,6 +91,25 @@ void Blackboard::add(const int typeId, const int x, const int y, const int param
 }
 
 
+void Blackboard::undo() {
+    if (!currentFigures.empty()) {
+        currentFigures.pop_back();
+    } else {
+        std::cout << "Add some figures first to remove them!" << std::endl;
+    }
+}
+
+
+void Blackboard::clear() {
+    if (!currentFigures.empty()) {
+        currentFigures.clear();
+        resetGrid();
+    } else {
+        std::cout << "Blackboard is already clean!" << std::endl;
+    }
+}
+
+
 // ----------------------------------------------------------------------------
 void Blackboard::print() const {
     for (const std::vector<char> &row: grid) {
